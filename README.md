@@ -1,4 +1,5 @@
 ansible-kibana3
 ===============
 
-Ansible playbook to install Kibana 3 for nginx.
+This is Ansible playbook for Kibana 3.
+It prepares nginx config files with ElasticSearch proxy.
