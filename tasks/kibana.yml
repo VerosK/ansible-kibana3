@@ -1,7 +1,7 @@
 ---
 - name: "Fetch Kibana"
-  get_url: url={{kibana.url}}/{{kibana.archive }}
-           dest={{kibana.tmp_dir}}/{{kibana.archive }} mode=0400
+  get_url: url={{kibana.url}}/{{kibana.archive}}
+           dest={{kibana.tmp_dir}}/{{kibana.archive}} mode=0400
 
 - name: "Create Kibana directory"
   file: path={{kibana.dir}} group=root owner=root mode=0755 state=directory
@@ -13,5 +13,11 @@
 - name: "Change Elasticsearch IP"
   lineinfile: "dest={{kibana.dir}}/{{kibana.config}} state=present
               regexp='^ *elasticsearch:.*,$'
+              line='    elasticsearch:  \"/\",'"
+  when: with_elasticsearch_proxy
+
+- name: "Change Elasticsearch IP"
+  lineinfile: "dest={{kibana.dir}}/{{kibana.config}} state=present
+              regexp='^ *elasticsearch:.*,$'
               line='    elasticsearch:  \"http://{{with_elasticsearch}}:9200/\",'"
-  when: with_elasticsearch is defined
+  when: not with_elasticsearch_proxy

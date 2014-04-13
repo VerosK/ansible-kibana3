@@ -1,2 +1,5 @@
 ---
 - include: kibana.yml
+
+- include: nginx_config.yml
+  when: with_nginx

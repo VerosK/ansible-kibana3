@@ -1,0 +1,7 @@
+---
+with_nginx: yes
+with_elasticsearch_proxy: yes
+default_server: yes
+with_elasticsearch: 127.0.0.1
+server_name: kibana
+hostnames: []
