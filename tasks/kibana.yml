@@ -13,7 +13,7 @@
 - name: "Change Elasticsearch IP"
   lineinfile: "dest={{kibana.dir}}/{{kibana.config}} state=present
               regexp='^ *elasticsearch:.*,$'
-              line='    elasticsearch:  \"/\",'"
+              line='    elasticsearch:  \"/es\",'"
   when: with_elasticsearch_proxy
 
 - name: "Change Elasticsearch IP"
