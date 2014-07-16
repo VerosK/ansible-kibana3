@@ -1,2 +1,5 @@
 - name: reload nginx
-  service: name=nginx state=reloaded enabled=yes
+  service: name=nginx state=reloaded
+
+- name: reload apache
+  service: name=apache2 state=reloaded

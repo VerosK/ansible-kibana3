@@ -1,7 +1,13 @@
 ---
-with_nginx: yes
+with_nginx: no
+with_apache: no
 with_elasticsearch_proxy: yes
 default_server: yes
 with_elasticsearch: 127.0.0.1
 server_name: kibana
 hostnames: []
+kibana_tmp_dir: /tmp
+kibana_dir: /var/www/kibana
+kibana_base_url: https://download.elasticsearch.org/kibana/kibana
+kibana_archive: kibana-3.1.0.tar.gz
+kibana_config: config.js

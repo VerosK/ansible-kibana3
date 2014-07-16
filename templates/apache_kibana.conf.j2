@@ -1,0 +1,22 @@
+# This file is generated automagically. Don't change, your changes will be overwrittern
+#
+# {{ ansible_managed }}
+#
+
+<VirtualHost *:80>
+
+    DocumentRoot {{ kibana_dir }}
+    ServerName {{ server_name }}
+{% for name in hostnames %}
+    ServerAlias {{ name }}
+{% endfor %}
+
+    <Location /es/>
+        ProxyPass http://127.0.0.1:9200/
+	    ProxyPassReverse http://127.0.0.1:9200/
+    </Location>
+
+# FIXME: secure ES according to the http://blog.klavsen.info/content/securing-elasticsearch-and-solr-and-other-rest-interfaces
+
+</VirtualHost>
+# {{ ansible_managed }}

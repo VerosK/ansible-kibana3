@@ -1,0 +1,17 @@
+---
+- name: Create Apache Kibana config
+  template: src=apache_kibana.conf.j2 dest=/etc/apache2/sites-available/kibana
+
+- name: Add kibana.conf
+  shell: a2ensite kibana
+  notify: reload apache
+
+- name: Enabled Apache modules
+  shell: a2enmod {{ item }}
+  with_items: [ proxy, proxy_http ]
+  notify: reload apache
+
+
+- name: Drop default apache config
+  file: path=/etc/apache2/sites-enabled/000-default state=absent
+  when: default_server

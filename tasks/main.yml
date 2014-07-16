@@ -3,3 +3,6 @@
 
 - include: nginx_config.yml
   when: with_nginx
+
+- include: apache_config.yml
+  when: with_apache
