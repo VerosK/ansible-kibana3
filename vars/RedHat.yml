@@ -1,0 +1,13 @@
+---
+kibana:
+  apache_config_name: kibana.conf
+  apache_have_ensite: false
+  apache_have_enmod: false
+
+  apache_site_dir: /etc/httpd/conf.d
+  apache_base_config: /etc/httpd/conf/httpd.conf
+  apache_default_site: /etc/httpd/conf.d/welcome.conf
+  apache_service: httpd
+
+  # confirm, that OS is supported
+  supported_os: True

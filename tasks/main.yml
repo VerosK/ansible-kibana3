@@ -1,4 +1,11 @@
 ---
+- name: add OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Warn if OS is unsupported
+  fail: msg="OS {{ ansible_os_family }} is unsupported"
+  when: not kibana.supported_os
+
 - include: kibana.yml
 
 - include: nginx_config.yml

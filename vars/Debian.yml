@@ -1,0 +1,11 @@
+---
+kibana:
+  apache_have_ensite: yes
+  apache_have_enmod: yes
+  apache_config_name: kibana
+  apache_site_dir: /etc/apache2/sites-available
+  apache_default_site: /etc/apache2/sites-enabled/00-default
+  apache_service: apache2
+
+  # confirm OS is supported
+  supported_os: True

@@ -1,8 +1,0 @@
----
-kibana:
-   url: 'https://download.elasticsearch.org/kibana/kibana'
-   archive: 'kibana-3.0.0.tar.gz'
-   dir: '/opt/kibana-3'
-   config: 'config.js'
-
-   tmp_dir: '/tmp'

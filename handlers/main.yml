@@ -2,4 +2,4 @@
   service: name=nginx state=reloaded
 
 - name: reload apache
-  service: name=apache2 state=reloaded
+  service: name={{kibana.apache_service}} state=reloaded

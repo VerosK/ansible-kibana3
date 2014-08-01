@@ -1,17 +1,32 @@
 ---
 - name: Create Apache Kibana config
-  template: src=apache_kibana.conf.j2 dest=/etc/apache2/sites-available/kibana
+  template: src=apache_kibana.conf.j2
+            dest={{kibana.apache_site_dir}}/{{kibana.apache_config_name}}
+  notify: reload apache
 
 - name: Add kibana.conf
   shell: a2ensite kibana
   notify: reload apache
+  when: kibana.apache_have_ensite
+  # FIXME: Check kibana is ensited
 
 - name: Enabled Apache modules
   shell: a2enmod {{ item }}
   with_items: [ proxy, proxy_http ]
+  when: kibana.apache_have_enmod
   notify: reload apache
+  # FIXME: Check modules are linked
 
+- name: Enable NameVirtualHosts
+  lineinfile: "dest='{{ kibana.apache_base_config }}' state=present
+               regexp='^#?NameVirtualHost '
+              line='NameVirtualHost *:80'"
+  when: (ansible_os_family == 'RedHat') and default_server
+
+- name: Start apache
+  service: name={{ kibana.apache_service}} state=started enabled=yes
+  when: default_server
 
 - name: Drop default apache config
-  file: path=/etc/apache2/sites-enabled/000-default state=absent
+  file: path={{kibana.apache_default_site}} state=absent
   when: default_server
